@@ -64,11 +64,11 @@ class Book {
 
 		//http://se1.php.net/usort# Example #3
  		$al = strtolower($a->author);
-        $bl = strtolower($b->author);
-        if ($al == $bl) {
-            return 0;
-        }
-        return ($al > $bl) ? +1 : -1;
+	        $bl = strtolower($b->author);
+	        if ($al == $bl) {
+	            return 0;
+	        }
+	        return ($al > $bl) ? +1 : -1;
 	}
 }
 
