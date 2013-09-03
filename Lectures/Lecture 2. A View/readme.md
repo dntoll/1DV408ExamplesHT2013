@@ -1,4 +1,4 @@
-Use-Case 1. Select Manage Shopping Cart
+Use-Case 1. Manage Shopping Cart
 =====================================
 
 Postcondition: A cart is created with products

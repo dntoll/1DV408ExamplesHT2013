@@ -1,7 +1,6 @@
 <?php
 
-echo "
-<!DOCTYPE HTML SYSTEM>
+echo "<!DOCTYPE HTML SYSTEM>
 <html>
   <head>
     <title>A page</title>
