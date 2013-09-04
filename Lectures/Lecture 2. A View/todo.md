@@ -1,14 +1,5 @@
 TODO
 ====
-* Kurslitteratur
-* Handledning och Examination
-* Förkunskaper
-
-
-
-Use-Case: readme.md
-
-
 Top-Down!
 Generera utdata i en view!
 Skapa klasser och använda require_once

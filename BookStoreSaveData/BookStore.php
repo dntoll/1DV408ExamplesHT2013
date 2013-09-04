@@ -1,4 +1,7 @@
 <?php
+
+namespace model;
+
 require_once("Book.php");
 require_once("BookDAL.php");
 
@@ -45,7 +48,7 @@ class BookStore {
 	*/
 	public function getByAuthorsSorted() {
 		//http://se1.php.net/usort
-		$sortOk = usort($this->books, array("Book", "compareByAuthor") );
+		$sortOk = usort($this->books, array("\model\Book", "compareByAuthor") );
 
 		assert($sortOk);
 
@@ -69,14 +72,3 @@ class BookStore {
 	}
 }
 
-/*
-//Testcase
-$store = new BookStore();
-$bookUnlimited = new Book("Daniel", "PHP Unlimited", "123456");
-
-$bookWasInStore = $store->AddBook($bookUnlimited);
-assert($bookWasInStore);
-
-//Add the same book again
-$bookWasInStore = $store->AddBook($bookUnlimited);
-assert(!$bookWasInStore);*/

@@ -1,5 +1,7 @@
 <?php
 
+namespace view;
+
 class BookView {
 	private static $AuthorName = "BookView::AuthorName";
 	private static $TitleName = "BookView::TitleName";
@@ -57,8 +59,8 @@ class BookView {
 		$isbn = $this->getCleanInput(self::$ISBNName);
 
 		try {
-			return new Book($author, $title, $isbn);
-		} catch (Exception $e) {
+			return new \model\Book($author, $title, $isbn);
+		} catch (\Exception $e) {
 			$this->message = "All fields need to be set";
 			throw $e;
 		}

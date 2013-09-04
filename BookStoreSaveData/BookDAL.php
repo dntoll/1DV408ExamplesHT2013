@@ -1,5 +1,7 @@
 <?php
 
+namespace model;
+
 require_once("Book.php");
 /*
 * Data Acess Layer (DAL) for Books
@@ -33,7 +35,7 @@ class BookDAL {
       		ENGINE = MyISAM;";
       
       if ($this->mysqli->query($sql) === FALSE) {
-          throw new Exception("'$sql' failed " . $this->mysqli->error);
+          throw new \Exception("'$sql' failed " . $this->mysqli->error);
       }
     }
 
@@ -53,19 +55,19 @@ class BookDAL {
 		//http://www.php.net/manual/en/mysqli-stmt.prepare.php
 		$statement = $this->mysqli->prepare($sql);
 		if ($statement === FALSE) {
-			throw new Exception("prepare of $sql failed " . $this->mysqli->error);
+			throw new \Exception("prepare of $sql failed " . $this->mysqli->error);
 		}
 
 		//http://www.php.net/manual/en/mysqli-stmt.bind-param.php
 		if ($statement->bind_param("sss", $book->author, 
 										  $book->title, 
 										  $book->isbn) === FALSE) {
-			throw new Exception("bind_param of $sql failed " . $statement->error);
+			throw new \Exception("bind_param of $sql failed " . $statement->error);
 		}
 
 		//http://www.php.net/manual/en/mysqli-stmt.execute.php
 		if ($statement->execute() === FALSE) {
-			throw new Exception("execute of $sql failed " . $statement->error);
+			throw new \Exception("execute of $sql failed " . $statement->error);
 		}
 
     }
@@ -83,11 +85,11 @@ class BookDAL {
 
 		$statement = $this->mysqli->prepare($sql);
 		if ($statement === FALSE) {
-			throw new Exception("prepare of $sql failed " . $this->mysqli->error);
+			throw new \Exception("prepare of $sql failed " . $this->mysqli->error);
 		}
 
 		if ($statement->execute() === FALSE) {
-			throw new Exception("execute of $sql failed " . $statement->error);
+			throw new \Exception("execute of $sql failed " . $statement->error);
 		}
 
 		$result = $statement->get_result();

@@ -32,6 +32,7 @@ class SocketTest {
 		}
 
 		$in = "GET $document HTTP/1.0\r\n";
+		
 		$in .= "Connection: Close\r\n\r\n";
 		$out = '';
 

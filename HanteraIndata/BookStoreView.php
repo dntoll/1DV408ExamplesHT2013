@@ -1,5 +1,7 @@
 <?php
 
+namespace view;
+
 require_once("BookStore.php");
 
 
@@ -16,7 +18,7 @@ class BookStoreView {
 	/**
 	* @param BookStore
 	*/
-	public function __construct(BookStore $store) {
+	public function __construct(\model\BookStore $store) {
 		$this->bookStore = $store;
 	}
 
@@ -42,7 +44,7 @@ class BookStoreView {
 	* @param Book
 	* @return String (HTML)
 	*/
-	private function getBookHTML(Book $book) {
+	private function getBookHTML(\model\Book $book) {
 		return "
 				<div>
 					<h3>$book->title</h3>
@@ -53,18 +55,3 @@ class BookStoreView {
 
 }
 
-
-//TestCase
-/*$bookUnlimited = new Book("Daniel Toll", "PHP Unlimited", "123456");
-$bookUnlimited2 = new Book("Daniel Toll", "PHP Unlimited II", "123457");
-$bookDuck = new Book("Arne Anka", "Duck Tales", "7654321");
-
-$bookStore = new BookStore();
-
-$bookStore->AddBook($bookUnlimited);
-$bookStore->AddBook($bookUnlimited2);
-$bookStore->AddBook($bookDuck);
-
-$bookStoreView = new BookStoreView($bookStore);
-
-echo $bookStoreView->getHTML();*/

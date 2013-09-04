@@ -1,5 +1,7 @@
 <?php
 
+namespace model;
+
 /**
 * An example class with member variables
 * http://www.phpdoc.org/
@@ -29,11 +31,11 @@ class Book {
 	*/
 	public function __construct($author, $title, $isbn) {
 		if ($author == "")
-			throw new Exception("Cannot create book without author");
+			throw new \Exception("Cannot create book without author");
 		if ($title == "")
-			throw new Exception("Cannot create book without title");
+			throw new \Exception("Cannot create book without title");
 		if ($isbn == "")
-			throw new Exception("Cannot create book without isbn");
+			throw new \Exception("Cannot create book without isbn");
 
 		$this->author = $author;
 		$this->title = $title;
@@ -80,10 +82,3 @@ class Book {
 	}
 }
 
-//Testcase
-/*$book = new Book("Daniel", "PHP unlimited", "123456");
-$bookSame = new Book("Daniel", "PHP unlimited", "123456");
-$bookOther = new Book("Daniel", "PHP unlimited 2", "123457");
- 
-assert($book->isSame($bookSame) == true);
-assert($book->isSame($bookOther) == false);*/

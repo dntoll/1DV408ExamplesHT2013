@@ -1,5 +1,7 @@
 <?php
 
+namespace controller;
+
 require_once("BookStore.php");
 require_once("BookStoreView.php");
 require_once("BookView.php");
@@ -18,10 +20,10 @@ class AddBookController {
 	private $bookStore;
 
 
-	public function __construct(BookStore $bookStore) {
+	public function __construct(\model\BookStore $bookStore) {
 		$this->bookStore = $bookStore;
-		$this->bookStoreView = new BookStoreView($this->bookStore);
-		$this->bookView = new BookView();
+		$this->bookStoreView = new \view\BookStoreView($this->bookStore);
+		$this->bookView = new \view\BookView();
 	}
 	/**
 	* @return String HTML
@@ -43,7 +45,7 @@ class AddBookController {
 				} else {
 					$this->bookView->bookAddedSuccess();
 				}
-			} catch (Exception $exception) {
+			} catch (\Exception $exception) {
 				
 			}
 			
@@ -53,17 +55,3 @@ class AddBookController {
 
 
 
-//testCase
-$bookUnlimited = new Book("Daniel Toll", "PHP Unlimited", "123456");
-$bookUnlimited2 = new Book("Daniel Toll", "PHP Unlimited II", "123457");
-$bookDuck = new Book("Arne Anka", "Duck Tales", "7654321");
-
-$bookStore = new BookStore();
-
-$bookStore->AddBook($bookUnlimited);
-$bookStore->AddBook($bookUnlimited2);
-$bookStore->AddBook($bookDuck);
-
-$controller = new AddBookController($bookStore);
-
-echo $controller->addBook();

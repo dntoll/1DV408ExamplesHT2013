@@ -1,5 +1,6 @@
 <?php
 
+namespace model;
 /**
 * An example class with member variables
 * http://www.phpdoc.org/
@@ -72,10 +73,4 @@ class Book {
 	}
 }
 
-//Testcase
-/*$book = new Book("Daniel", "PHP unlimited", "123456");
-$bookSame = new Book("Daniel", "PHP unlimited", "123456");
-$bookOther = new Book("Daniel", "PHP unlimited 2", "123457");
- 
-assert($book->isSame($bookSame) == true);
-assert($book->isSame($bookOther) == false);*/
+
