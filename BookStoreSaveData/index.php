@@ -12,4 +12,6 @@ $bookStore = new \model\BookStore($mysqli);
 
 $controller = new \controller\AddBookController($bookStore);
 
+$mysqli->close();
+
 echo $controller->addBook();
