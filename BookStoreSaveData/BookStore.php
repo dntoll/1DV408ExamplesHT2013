@@ -21,6 +21,10 @@ class BookStore {
 	*/ 
 	private $bookDAL;
 
+	/**
+	 * 
+	 * @param mysqli $dbConnection A connected db
+	 */
 	public function __construct(\mysqli $dbConnection) {
 		$this->bookDAL = new BookDAL($dbConnection);
 

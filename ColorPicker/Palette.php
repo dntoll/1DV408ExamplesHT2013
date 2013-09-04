@@ -17,8 +17,9 @@ class Palette {
 	private $colors = array();
 
 	/**
-	* 
-	*/
+	 * @param int $numberOfVariations example: 8
+	 * @param SessionColorPersistor $persistance       
+	 */
 	public function __construct($numberOfVariations, SessionColorPersistor $persistance) {
 		$this->numberOfVariations = $numberOfVariations;
 		$this->colorPersistance = $persistance;

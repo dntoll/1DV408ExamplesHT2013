@@ -16,7 +16,7 @@ class BookStoreView {
 	private $bookStore;
 
 	/**
-	* @param BookStore
+	* @param BookStore $store
 	*/
 	public function __construct(\model\BookStore $store) {
 		$this->bookStore = $store;

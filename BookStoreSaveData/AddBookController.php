@@ -14,9 +14,19 @@ require_once("BookView.php");
 * and shows all books in the store.
 */
 class AddBookController {
+	/**
+	 * @var \view\BookStoreView
+	 */
 	private $bookStoreView;
+
+	/**
+	 * @var \view\BookView
+	 */
 	private $bookView;
 
+	/**
+	 * @var \model\BookStore
+	 */
 	private $bookStore;
 
 	/**

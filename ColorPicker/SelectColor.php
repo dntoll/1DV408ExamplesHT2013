@@ -17,6 +17,7 @@ class SelectColor {
 	*/
 	private $view;
 
+	
 	public function __construct(\Model\SessionColorPersistor $persistance) {
 		$this->palette = new \Model\Palette(10, $persistance);
 		$this->view = new \View\ColorPicker($this->palette);

@@ -3,7 +3,15 @@
 namespace View;
 
 class VisualColor {
-	
+
+	/**
+	 * @var \Model\Color $color
+	 */
+	private $color;
+
+	/**
+	 * @param ModelColor $color [description]
+	 */
 	public function __construct(\Model\Color $color) {
 		$this->color = $color;
 	}
