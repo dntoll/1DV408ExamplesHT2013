@@ -7,7 +7,7 @@ require_once("ReloadCounter.php");
 session_start();
 
 //Skapar en instans(objekt) av klassen ReloadCounter
-$counter = new ReloadCounter();
+$counter = ReloadCounter::getInstance();
 
 //Anropar en metod på klassen och tar emot resultatet i $reloads
 $reloads = $counter->GetReloadCount();

@@ -3,51 +3,58 @@
 /**
  * Counts how many times the page has been reloaded
  * Saves a file on disk and uses session
+ * 
+ * This class is a singleton
+ * http://en.wikipedia.org/wiki/Singleton_pattern
  */
 class ReloadCounter {
-
-  //Checks so the counter is updated only once per call
-  private static $g_hasBeenConstructedBeforeThisCall = false;
-  
-  //makes sure we dont missspell the session adress
-  const SESSION_ADRESS = "ReloadCounter::ReloadCounter";
-  
-  
-  /** Constructor
-   * called when an instance of ReloadCounter is created
-   * $rc = new ReloadCounter();     
-   *
+  /**
+   * Make sure no one else uses this adress 
+   * @var string
    */
-  public function __construct() {
-    
-    //Check if session is started
-    if (isset($_SESSION) == false) {
-      //throw exception so the class cannot vbe instantiated before session_start is called.
-      throw new Exception("Session IS NOT started, ReloadCounter uses session, please call session_start() before any calls to ReloadCounter");
-    } 
-    
-    //Make sure the count is updated only once per HTTP request
-    if (ReloadCounter::$g_hasBeenConstructedBeforeThisCall == false) {
-      
-      //if this is the first call set the counter to 1 else set it to (n + 1)
-      // isset checks if the adress exists in the session array
-      if (isset($_SESSION[ReloadCounter::SESSION_ADRESS]) == false) {
-        $_SESSION[ReloadCounter::SESSION_ADRESS] = 1;
-      } else {
-        $_SESSION[ReloadCounter::SESSION_ADRESS]++;
-      }
-      ReloadCounter::$g_hasBeenConstructedBeforeThisCall = true;
+  private static $sessionAdress = "ReloadCounter::Reloads";
+  
+  /**
+   * SingleTon Instance
+   * @var ReloadCounter $instance
+   */
+  private static $instance = null;
+
+  /**
+   * getInstance returns the only instance 
+   * getInstance creates the instance if it does not exists
+   * @return ReloadCounter
+   */
+  public static function getInstance() {
+    if (self::$instance == null) {
+      self::$instance = new ReloadCounter();
     }
-    
+    return self::$instance;
   }
+
   /**
   * @return int how many times the page is reloaded     
   **/
-  public function GetReloadCount() {
-    return $_SESSION[ReloadCounter::SESSION_ADRESS];
+  public function getReloadCount() {
+    return $_SESSION[self::$sessionAdress];
+  }
+  
+  /** 
+   * is private so we can make sure it is only called once per call
+   */
+  private function __construct() {
+    
+    //Check if session is started
+    assert(isset($_SESSION));
+    
+
+    if (isset($_SESSION[self::$sessionAdress])) {
+      //increase reloads
+      $_SESSION[self::$sessionAdress]++;
+    } else {
+      //allocate memory
+      $_SESSION[self::$sessionAdress] = 1;
+    }
   }
 }
 
-
-
-//Note NO end php tag

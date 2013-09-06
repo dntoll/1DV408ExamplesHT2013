@@ -8,7 +8,15 @@ class Color {
 	* @var float
 	*/
 	public $red;
+
+	/**
+	* @var float
+	*/
 	public $green;
+	
+	/**
+	* @var float
+	*/
 	public $blue;
 
 	/**
