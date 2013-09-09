@@ -11,8 +11,8 @@ $bookOther = new model\Book("Daniel", "PHP unlimited 2", "123457");
  
 assert($book->isSame($bookSame) == true);
 assert($book->isSame($bookOther) == false);
-
-//Testcase
+ 
+// Testcase
 $store = new model\BookStore();
 $bookUnlimited = new model\Book("Daniel", "PHP Unlimited", "123456");
 
