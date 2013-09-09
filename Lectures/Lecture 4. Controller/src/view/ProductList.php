@@ -32,7 +32,6 @@ class ProductList {
 		return isset($_GET[self::$buyButton]);
 	}
 
-	
 	/**
 	 * @param  modelProduct $product [description]
 	 * @return String HTML               [description]

@@ -25,9 +25,8 @@ class BuyProducts {
 	/**
 	 * @param \model\ProductList $productList
 	 */
-	public function __construct(\model\ProductList $productList,
-								\view\ProductList $listView) {
-		$this->productListView =  $listView;
+	public function __construct(\model\ProductList $productList) {
+		$this->productListView =  new \view\ProductList();
 		$this->productList = $productList;
 
 		$this->cart = new \model\Cart();
