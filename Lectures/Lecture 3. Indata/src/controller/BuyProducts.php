@@ -12,10 +12,19 @@ class BuyProducts {
 	 */
 	private $productListView;
 
+	/**
+	 * @var \model\ProductList $productList
+	 */
 	private $productList;
 
+	/**
+	 * @var \model\Cart
+	 */
 	private $cart;
 
+	/**
+	 * @param \model\ProductList $productList
+	 */
 	public function __construct(\model\ProductList $productList) {
 		$this->productListView =  new \view\ProductList();
 		$this->productList = $productList;
@@ -23,17 +32,20 @@ class BuyProducts {
 		$this->cart = new \model\Cart();
 	}
 
+	/**
+	 * @return String HTML
+	 */
 	public function buyProducts() {
-		//hantera indata
-		//
+		//handle input
 		if ($this->productListView->userBuysProduct()) {
 			$product = $this->productListView->getProduct();
 
+			//make changes in model
 			$this->cart->addProduct($product);
 		}
 		
 
-		//genera utdata mha vyer
+		//generate output (using views)
 		$productListHTML = $this->productListView->getProductList($this->productList);
 
 		return $productListHTML;

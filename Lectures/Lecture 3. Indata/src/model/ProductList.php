@@ -9,7 +9,9 @@ class ProductList {
 	 */
 	private $products = array();
 
-
+	/**
+	 * @param Product $product
+	 */
 	public function add(Product $product) {
 		$this->products[$product->getUnique()] = $product;
 	}

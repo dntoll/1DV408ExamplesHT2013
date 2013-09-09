@@ -8,13 +8,16 @@ require_once("\src\model\ProductList.php");
 class ProductList {
 	private static $buyButton = "buy";
 
+	/**
+	 * @param  \model\ProductList $productList
+	 * @return String HTML                  
+	 */
 	public function getProductList(\model\ProductList $productList) {
 
 		$productArray = $productList->getProductArray();
 		$products = "";
 		foreach ($productArray AS $productIndex => $product) {
-			//$product är nu en \model\Product
-			//
+			//$product is a \model\Product
 			$productLink = $this->getProductLink($product);
 			$products = $products . "<li>" . $product->getName() . " $productLink</li>";
 		}
@@ -23,7 +26,7 @@ class ProductList {
 	}
 	
 	/**
-	 * @return Boolean [description]
+	 * @return Boolean 
 	 */
 	public function userBuysProduct() {
 		return isset($_GET[self::$buyButton]);
