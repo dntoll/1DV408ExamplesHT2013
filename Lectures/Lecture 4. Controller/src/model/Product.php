@@ -5,17 +5,20 @@ namespace model;
 class Product {
 
 	/**
+	 * A Product must have a unique index
 	 * @var String Example Ban26
 	 */
 	private $uniqueID;
 
 	/**
+	 * Full name of product
 	 * @var String Example Banana
 	 */
 	private $name;
 
 	/**
-	 * @var float
+	 * Price in SEK
+	 * @var float SEK
 	 */
 	private $cost;
 

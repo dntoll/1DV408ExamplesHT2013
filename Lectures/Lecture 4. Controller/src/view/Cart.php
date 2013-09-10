@@ -11,10 +11,17 @@ class Cart {
 	 */
 	private $cart;
 
+	/**
+	 * @param modelCart $cart 
+	 */
 	public function __construct(\model\Cart $cart) {
 		$this->cart = $cart;
 	}
 
+	/**
+	 * Creates a HTML representation of the cart
+	 * @return String HTML 
+	 */
 	public function getCartHTML() {
 		$productLines = $this->cart->getProductLines();
 

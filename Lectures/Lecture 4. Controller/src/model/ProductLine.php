@@ -2,6 +2,9 @@
 
 namespace model;
 
+/**
+ * A Product Line in a cart
+ */
 class ProductLine {
 
 	/**
@@ -41,6 +44,9 @@ class ProductLine {
 		return $this->getAmount() * $this->product->getCostSEK();
 	}
 
+	/**
+	 * Add a product to the line
+	 */
 	public function increment() {
 		$this->amount++;
 	}
