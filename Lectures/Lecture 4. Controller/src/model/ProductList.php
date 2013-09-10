@@ -23,4 +23,8 @@ class ProductList {
 	public function getProductArray() {
 		return $this->products;
 	}
+
+	public function getProduct($uniqueIndex) {
+		return $this->products[$uniqueIndex];
+	}
 }

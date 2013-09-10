@@ -12,3 +12,9 @@
 1. Product one is in cart and feedback
 
 
+## Testcase 1.3 Buy non existing Product ##
+1. Testcase 1.1 Navigate to page
+1. Write product in url
+1. show error feedback
+
+

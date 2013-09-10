@@ -3,6 +3,7 @@
 namespace controller;
 
 require_once("src/model/Cart.php");
+require_once("src/view/Cart.php");
 
 
 class BuyProducts {
@@ -30,6 +31,8 @@ class BuyProducts {
 		$this->productList = $productList;
 
 		$this->cart = new \model\Cart();
+
+		$this->cartView = new \view\Cart($this->cart);
 	}
 
 	/**
@@ -38,7 +41,7 @@ class BuyProducts {
 	public function buyProducts() {
 		//handle input
 		if ($this->productListView->userBuysProduct()) {
-			$product = $this->productListView->getProduct();
+			$product = $this->productListView->getSelectedProduct($this->productList);
 
 			//make changes in model
 			$this->cart->addProduct($product);
@@ -47,7 +50,7 @@ class BuyProducts {
 
 		//generate output (using views)
 		$productListHTML = $this->productListView->getProductList($this->productList);
-
-		return $productListHTML;
+		$cartHTML = $this->cartView->getCartHTML();
+		return $productListHTML . $cartHTML;
 	}
 }

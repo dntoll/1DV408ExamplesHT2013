@@ -10,10 +10,8 @@ $productList = new \model\ProductList();
 $productList->add(new \model\Product("Banana", "Banan"));
 $productList->add(new \model\Product("Peaches", "Peach"));
 
-$listView = new \view\ProductList();
-
 //run controller
-$productListController = new \controller\BuyProducts($productList, $listView);
+$productListController = new \controller\BuyProducts($productList);
 $html = $productListController->buyProducts();
 
 //assemble output

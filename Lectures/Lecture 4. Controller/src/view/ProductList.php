@@ -32,6 +32,18 @@ class ProductList {
 		return isset($_GET[self::$buyButton]);
 	}
 
+
+	/**
+     * @return \model\Product
+	 */
+	public function getSelectedProduct(\model\ProductList $productList) {
+
+		$unique = $_GET[self::$buyButton];
+		$product = $productList->getProduct($unique);
+
+		return $product;
+	}
+
 	/**
 	 * @param  modelProduct $product
 	 * @return String HTML 
