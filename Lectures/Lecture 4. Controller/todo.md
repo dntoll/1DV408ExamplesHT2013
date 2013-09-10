@@ -1,8 +1,6 @@
 TODO
 ====
-Top-Down!
-Generera utdata i en view!
-Skapa klasser och använda require_once
+Fixa Cart
 
 Kvalitet?
 Indentering 

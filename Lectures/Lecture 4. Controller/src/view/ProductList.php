@@ -33,8 +33,8 @@ class ProductList {
 	}
 
 	/**
-	 * @param  modelProduct $product [description]
-	 * @return String HTML               [description]
+	 * @param  modelProduct $product
+	 * @return String HTML 
 	 */
 	private function getProductLink(\model\Product $product) {
 		return "<a href='?" . self::$buyButton ."=" . $product->getUnique() . "' >buy</a> ";
