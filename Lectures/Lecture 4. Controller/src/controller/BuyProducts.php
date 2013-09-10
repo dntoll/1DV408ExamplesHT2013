@@ -26,11 +26,11 @@ class BuyProducts {
 	/**
 	 * @param \model\ProductList $productList
 	 */
-	public function __construct(\model\ProductList $productList) {
+	public function __construct(\model\ProductList $productList, \model\Cart $cart) {
 		$this->productListView =  new \view\ProductList();
 		$this->productList = $productList;
 
-		$this->cart = new \model\Cart();
+		$this->cart = $cart;
 
 		$this->cartView = new \view\Cart($this->cart);
 	}

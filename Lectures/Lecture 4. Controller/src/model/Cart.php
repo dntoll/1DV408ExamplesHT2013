@@ -2,6 +2,8 @@
 
 namespace model;
 
+require_once("ProductLine.php");
+
 class Cart {
 
 	/**
@@ -17,13 +19,31 @@ class Cart {
 
 
 	public function addProduct(Product $product) {
-		//if not in cart add new
-		$this->productLines[] = new ProductLine($product)
-		else increment productLine
-
+		
+		if ($this->hasProduct($product)) {
+			$pline = $this->getProductLine($product);
+			$pline->increment();
+		} else {
+			//if not in cart add new
+			$index = $product->getUnique();
+			$this->productLines[$index] = new ProductLine($product);
+		}
 	}
 
+	/**
+	 * @return array of ProductLine
+	 */
 	public function getProductLines() {
-		return array();
+		return $this->productLines;
+	}
+
+	private function hasProduct(Product $product) {
+		$index = $product->getUnique();
+		return isset($this->productLines[$index]);
+	}
+
+	private function getProductLine(Product $product) {
+		$index = $product->getUnique();
+		return $this->productLines[$index];
 	}
 }

@@ -11,6 +11,12 @@
 1. Click on buy for product 1
 1. Product one is in cart and feedback
 
+## Testcase 1.3 Buy 2 Products ##
+1. Testcase 1.2 Navigate to page
+1. Click on buy for product 1
+1. Two Products is in cart and feedback
+
+
 
 ## Testcase 1.3 Buy non existing Product ##
 1. Testcase 1.1 Navigate to page

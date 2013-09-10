@@ -2,6 +2,8 @@
 
 namespace view;
 
+
+
 class Cart {
 
 	/**
@@ -20,14 +22,15 @@ class Cart {
 		foreach ($productLines as $productLine) {
 			$product = $productLine->getProduct();
 			$name = $product->getName();
-			$name = $product->getCost();
+			$costSEK = $product->getCostSEK();
 			$amount = $productLine->getAmount();
 			$totalSEK = $productLine->getTotalSEK();
 
-			$html = "<li>$name $amount x $cost = $totalSEK SEK</li>";
+			$html .= "<li>$name $amount x $costSEK = $totalSEK SEK</li>";
+
 		}
 		$html .= "</ul>";
 
-		return "<h2>Cart</h2>";
+		return "<h2>Cart</h2> $html";
 	}
 }
