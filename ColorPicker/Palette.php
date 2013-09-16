@@ -17,16 +17,13 @@ class Palette {
 	private $colors = array();
 
 	/**
-	 * @param int $numberOfVariations example: 8
+	 * @param int $numberOfVariations example: 8 
 	 * @param SessionColorPersistor $persistance       
 	 */
 	public function __construct($numberOfVariations, SessionColorPersistor $persistance) {
 		$this->numberOfVariations = $numberOfVariations;
 		$this->colorPersistance = $persistance;
 		$this->createPalette();
-
-		//make sure we have a session
-		assert(isset($_SESSION));
 	}
 
 	/**
@@ -59,7 +56,7 @@ class Palette {
 		$stepPerVariation = 1.0 /($this->numberOfVariations - 1);
 
 		//blue is held constant
-		$b = 0;
+		$b = 1;
 
 		//create all variations of red and green
 		for ($r = 0; $r < $this->numberOfVariations; $r++) {

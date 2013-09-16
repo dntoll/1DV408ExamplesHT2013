@@ -34,7 +34,7 @@ class SelectColor {
 		if ($this->view->userHasSelectedColor() ) {
 			try {
 				$color = $this->view->getSelectedColor();
-				$result = $this->palette->setSelectedColor($color);
+				$this->palette->setSelectedColor($color);
 			} catch (\Exception $e) {
 				$this->view->showErrorMessage();
 			}

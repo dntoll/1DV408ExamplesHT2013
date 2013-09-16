@@ -48,6 +48,7 @@ class ColorPicker {
 			return $colors[$index];
 		}
 		
+		
 		throw new \Exception("Input is manipulated");
 	}
 
