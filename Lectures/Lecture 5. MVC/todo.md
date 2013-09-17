@@ -9,7 +9,6 @@ GRASP, http://en.wikipedia.org/wiki/GRASP_(object-oriented_design)
 MVC, http://sv.wikipedia.org/wiki/Model-View-Controller
 
 
-
 Fixa Cart
 
 Kvalitet?
