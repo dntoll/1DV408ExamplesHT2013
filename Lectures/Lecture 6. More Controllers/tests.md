@@ -18,9 +18,14 @@
 
 
 
-## Testcase 1.3 Buy non existing Product ##
+## Testcase 1.4 Buy non existing Product ##
 1. Testcase 1.1 Navigate to page
 1. Write product in url
 1. show error feedback
+
+## Testcase 1.5 Dont buy on Reload
+1. Testcase 1.2 Buy product
+1. Reload page with F5
+1. Only one product in Cart
 
 

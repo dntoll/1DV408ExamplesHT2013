@@ -16,6 +16,12 @@ class Cart {
 	 */
 	public function __construct(\model\Cart $cart) {
 		$this->cart = $cart;
+
+		assert(isset($_SESSION));
+	}
+
+	public function addBuySuccessMessage() {
+		$_SESSION["cartSuccessMessage"] = true;
 	}
 
 	/**
@@ -24,7 +30,7 @@ class Cart {
 	 */
 	public function getCartHTML() {
 		$productLines = $this->cart->getProductLines();
-
+		$sum = $this->cart->getSumSEK();
 		$html = "<ul>";
 		foreach ($productLines as $productLine) {
 			$product = $productLine->getProduct();
@@ -32,12 +38,17 @@ class Cart {
 			$costSEK = $product->getCostSEK();
 			$amount = $productLine->getAmount();
 			$totalSEK = $productLine->getTotalSEK();
-
+			
 			$html .= "<li>$name $amount x $costSEK = $totalSEK SEK</li>";
 
 		}
 		$html .= "</ul>";
 
-		return "<h2>Cart</h2> $html";
+		if (isset($_SESSION["cartSuccessMessage"])) {
+			$html .= "Grattis till ditt köp, kommer göra dig gott!</br>";
+			unset($_SESSION["cartSuccessMessage"]);
+		}
+
+		return "<h2>Cart</h2> $html Summa : $sum kr";
 	}
 }

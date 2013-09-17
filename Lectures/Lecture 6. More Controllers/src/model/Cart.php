@@ -45,6 +45,18 @@ class Cart {
 	}
 
 	/**
+	 * get sum in SEK :-
+	 * @return float SEK
+	 */
+	public function getSumSEK() {
+		$sum = 0;
+		foreach ($this->productLines as $productLine) {
+			$sum += $productLine->getTotalSEK();
+		}
+		return $sum;
+	}
+
+	/**
 	 * @param  Product $product
 	 * @return boolean true if product already is in cart
 	 */

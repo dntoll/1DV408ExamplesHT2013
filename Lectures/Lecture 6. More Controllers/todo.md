@@ -20,7 +20,7 @@ http://se1.php.net/manual/en/language.exceptions.php
 * Använder public, private och protected för att begränsa åtkomst till metoder och medlemsvariabler *
 http://php.net/manual/en/language.oop5.visibility.php
 
-* Använder inte globala variabler *
+* Använder inte globala variabler 
 http://php.net/manual/en/language.variables.scope.php
 
 * Använder inte superglobala variabler för att passa data mellan klasser *
@@ -40,6 +40,7 @@ http://php.net/manual/en/language.namespaces.php
 
 * Använder versionshantering *
 * Duplicerad kod *
+Dry
 * Använder loggning *
 http://php.net/manual/en/function.error-log.php
 
