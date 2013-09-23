@@ -1,0 +1,84 @@
+<?php
+
+namespace model;
+
+/**
+* An example class with member variables
+* http://www.phpdoc.org/
+*/
+class Book {
+
+	/**
+	* @var String
+	*/
+	public $author;
+
+	/**
+	* @var String
+	*/
+	public $title;
+
+	/**
+	* @var String
+	*/
+	public $isbn;
+
+	/**
+	* @param String author , Example "J.K. Rowling"
+	* @param String title , Example "Harry Potter and the Philosopher's Stone"
+	* @param String isbn , Example "9788478888566"
+	* @throws Exception if a book could not be constructed
+	*/
+	public function __construct($author, $title, $isbn) {
+		if ($author == "")
+			throw new \Exception("Cannot create book without author");
+		if ($title == "")
+			throw new \Exception("Cannot create book without title");
+		if ($isbn == "")
+			throw new \Exception("Cannot create book without isbn");
+
+		$this->author = $author;
+		$this->title = $title;
+		$this->isbn = $isbn;
+
+	}
+
+	/**
+	* @param Book other book to compare to
+	* @return boolean return true if the books are the same
+	*/
+	public function isSame(Book $other) {
+		if($this->author != $other->author) { 
+			return false;
+		}
+
+		if($this->title != $other->title) { 
+			return false;
+		}
+
+		if($this->isbn != $other->isbn) { 
+			return false;
+		}
+
+		return true;
+	}
+
+	/**
+	* @param Book a
+	* @param Book b
+	* @return int return 1 if  a > b
+	*             return 0 if  a = b
+	* 			  return -1 if a < b
+	*/
+	public static function compareByAuthor($a, $b) {
+
+		//http://se1.php.net/usort# Example #3
+ 		$al = strtolower($a->author);
+        $bl = strtolower($b->author);
+        if ($al == $bl) {
+            return 0;
+        }
+        return ($al > $bl) ? +1 : -1;
+	}
+}
+
