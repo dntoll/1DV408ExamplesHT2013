@@ -37,6 +37,25 @@ class Cart {
 		
 	}
 
+	public function removeProduct(Product $product) {
+		if ($this->hasProduct($product)) {
+			$pline = $this->getProductLine($product);
+			$pline->decrement();
+
+			if ($pline->getAmount() <= 0) {
+				$this->removeProductLine($pline);
+			}
+		} else {
+			assert(false);
+		}
+	}
+	
+	private function removeProductLine(ProductLine $line) {
+		$product = $line->getProduct();
+		$index = $product->getUnique();
+		unset($this->productLines[$index]);
+	}
+
 	/**
 	 * @return array of ProductLine
 	 */

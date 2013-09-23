@@ -41,7 +41,7 @@ class BuyProducts {
 
 		$this->cart = $cart;
 
-		$this->cartView = new \view\Cart($this->cart);
+		$this->cartView = new \view\Cart($this->cart, $this->productListView);
 		$this->navigationView = new \view\Navigation();
 	}
 
@@ -52,6 +52,7 @@ class BuyProducts {
 
 		$reload = false;
 		//handle input
+		//@todo: fix duplication
 		if ($this->productListView->userBuysProduct()) {
 
 			try {
@@ -59,7 +60,20 @@ class BuyProducts {
 				//make changes in model
 				$this->cart->addProduct($product);
 
+				$this->cartView->addBuySuccessMessage();
+				$reload = true;
+			} catch(\Exception $e) {
+				
+			} 
+		}
+		if ($this->productListView->userRemovesProduct()) {
 
+			try {
+				$product = $this->productListView->getSelectedProduct($this->productList);
+				//make changes in model
+				$this->cart->removeProduct($product);
+
+				$this->cartView->addRemoveSuccessMessage();
 				$reload = true;
 			} catch(\Exception $e) {
 				
@@ -69,7 +83,7 @@ class BuyProducts {
 		if ($reload) {
 
 			$this->navigationView->reloadToFrontpage();
-			$this->cartView->addBuySuccessMessage();
+			
 		} else {
 			//generate output (using views)
 			$productListHTML = $this->productListView->getProductList($this->productList);

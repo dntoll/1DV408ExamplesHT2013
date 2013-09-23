@@ -15,6 +15,11 @@ class ProductList {
 	/**
 	 * @var string
 	 */
+	private static $removeButton = "remove";
+
+	/**
+	 * @var string
+	 */
 	private $message = "";
 
 	/**
@@ -27,7 +32,7 @@ class ProductList {
 		$products = "";
 		foreach ($productArray AS $productIndex => $product) {
 			//$product is a \model\Product
-			$productLink = $this->getProductLink($product);
+			$productLink = $this->getBuyProductLink($product, "buy");
 			$products = $products . "<li>" . $product->getName() . " $productLink</li>";
 		}
 
@@ -41,6 +46,15 @@ class ProductList {
 		return isset($_GET[self::$buyButton]);
 	}
 
+	/**
+	 * @return Boolean true if user wants to buy a product
+	 */
+	public function userRemovesProduct() {
+		return isset($_GET[self::$removeButton]);
+	}
+
+	
+
 
 	/**
      * @return \model\Product
@@ -49,7 +63,11 @@ class ProductList {
 	 */
 	public function getSelectedProduct(\model\ProductList $allProducts) {
 
-		$unique = $_GET[self::$buyButton];
+		if (isset( $_GET[self::$buyButton])) {
+			$unique = $_GET[self::$buyButton];
+		} else {
+			$unique = $_GET[self::$removeButton];
+		}
 
 		if ($allProducts->hasProduct($unique)) {
 			$product = $allProducts->getProduct($unique);
@@ -64,8 +82,16 @@ class ProductList {
 	 * @param  modelProduct $product
 	 * @return String HTML 
 	 */
-	private function getProductLink(\model\Product $product) {
-		return "<a href='?" . self::$buyButton ."=" . $product->getUnique() . "' >buy</a> ";
+	public function getBuyProductLink(\model\Product $product, $title) {
+		return "<a href='?" . self::$buyButton ."=" . $product->getUnique() . "' >$title</a> ";
+	}
+
+	/**
+	 * @param  modelProduct $product
+	 * @return String HTML 
+	 */
+	public function getRemoveProductLink(\model\Product $product, $title) {
+		return "<a href='?" . self::$removeButton ."=" . $product->getUnique() . "' >$title</a> ";
 	}
 
 

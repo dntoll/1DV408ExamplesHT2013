@@ -50,4 +50,9 @@ class ProductLine {
 	public function increment() {
 		$this->amount++;
 	}
+
+	public function decrement() {
+		$this->amount--;	
+		assert($this->amount >= 0);
+	}
 }

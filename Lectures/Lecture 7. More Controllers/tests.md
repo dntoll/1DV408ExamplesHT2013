@@ -28,4 +28,8 @@
 1. Reload page with F5
 1. Only one product in Cart
 
+## Testcase 1.6 Remove non existing Product from Cart##
+1. Testcase 1.1 Navigate to page
+1. Write remove product in url
+1. show error feedback
 
