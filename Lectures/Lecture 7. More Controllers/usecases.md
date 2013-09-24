@@ -14,7 +14,7 @@ Postcondition: A cart is created with products
 5. customer removes or adds products to the cart until satisfied, repeat from 2
 
 
-Use-Case 2. Buy products in cart
+Use-Case 2. Create Order from Cart
 ==============================
 Precondition: There is at least one product in cart.
 Postcondition: Order is created, products are removed from cart

@@ -22,6 +22,8 @@ class ProductList {
 	 */
 	private $message = "";
 
+	//@todo add __construct with ProductList parameter
+
 	/**
 	 * @param  \model\ProductList $productList
 	 * @return String HTML                  

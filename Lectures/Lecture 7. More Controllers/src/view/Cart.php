@@ -7,6 +7,11 @@ namespace view;
 class Cart {
 
 	private static $messageHolder = "view::Cart::ActionSuccess";
+	private static $createOrder = "createOrder";
+	
+	//@todo document!
+	private static $addProductSucceded = true;
+	private static $removeProductSucceded = false;
 	/** 
 	 * @var \model\Cart
 	 */
@@ -28,7 +33,13 @@ class Cart {
 	}
 
 	public function setSuccessMessage() {
-		$_SESSION[self::$messageHolder] = true;
+
+		if ($this->productListView->userBuysProduct()) {
+			$_SESSION[self::$messageHolder] = self::$addProductSucceded;
+		} else {
+			$_SESSION[self::$messageHolder] = self::$removeProductSucceded;
+		}
+		
 	}
 
 	/**
@@ -58,12 +69,28 @@ class Cart {
 
 		}
 		$html .= "</ul>";
+		
 
 		if (isset($_SESSION[self::$messageHolder])) {
-			$html .= "Grattis till ditt köp, kommer göra dig gott!</br>";
+			if ($_SESSION[self::$messageHolder] == self::$addProductSucceded) {
+				$html .= "Grattis till ditt köp, kommer göra dig gott!</br>";	
+			} else {
+				$html .= "Du tog bort en produkt! </br>";
+			}
+			
+			
 			unset($_SESSION[self::$messageHolder]);
 		}
 
-		return "<h2>Cart</h2> $html Summa : $sum kr";
+		if ($this->cart->containsItems())
+			$checkout = "<a href='?" . self::$createOrder. " '>Gå till kassan</a>";
+		else 
+			$checkout = "Inga produkter i varukorgen";
+		return "<h2>Cart</h2> $html Summa : $sum kr $checkout";
+	}
+
+	public function userCreatesOrder() { 
+		
+		return isset($_GET[self::$createOrder]);
 	}
 }

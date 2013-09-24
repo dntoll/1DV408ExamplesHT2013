@@ -64,6 +64,14 @@ class Cart {
 	}
 
 	/**
+	 * @return boolean
+	 */
+	public function containsItems() {
+		return count($this->productLines) > 0;
+	}
+	
+
+	/**
 	 * get sum in SEK :-
 	 * @return float SEK
 	 */
