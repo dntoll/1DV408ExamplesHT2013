@@ -31,7 +31,7 @@ class Cart {
 	}
 
 	//@todo duplication!!! 
-	ublic function addRemoveSuccessMessage() {
+	public function addRemoveSuccessMessage() {
 		$_SESSION["cartRemoveMessage"] = true;
 	}
 

@@ -74,7 +74,7 @@ class ProductList {
 			return $product;
 		}
 
-		$this->message = "Cannot fint that product, please select a proper product!";
+		$this->message = "Cannot find that product, please select a proper product!";
 		throw new \Exception("Cannot find product $unique");
 	}
 
