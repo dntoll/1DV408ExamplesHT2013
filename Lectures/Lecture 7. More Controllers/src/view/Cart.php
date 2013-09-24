@@ -6,7 +6,8 @@ namespace view;
 
 class Cart {
 
-	/**
+	private static $messageHolder = "view::Cart::ActionSuccess";
+	/** 
 	 * @var \model\Cart
 	 */
 	private $cart;
@@ -26,13 +27,8 @@ class Cart {
 		assert(isset($_SESSION));
 	}
 
-	public function addBuySuccessMessage() {
-		$_SESSION["cartSuccessMessage"] = true;
-	}
-
-	//@todo duplication!!! 
-	public function addRemoveSuccessMessage() {
-		$_SESSION["cartRemoveMessage"] = true;
+	public function setSuccessMessage() {
+		$_SESSION[self::$messageHolder] = true;
 	}
 
 	/**
@@ -63,9 +59,9 @@ class Cart {
 		}
 		$html .= "</ul>";
 
-		if (isset($_SESSION["cartSuccessMessage"])) {
+		if (isset($_SESSION[self::$messageHolder])) {
 			$html .= "Grattis till ditt köp, kommer göra dig gott!</br>";
-			unset($_SESSION["cartSuccessMessage"]);
+			unset($_SESSION[self::$messageHolder]);
 		}
 
 		return "<h2>Cart</h2> $html Summa : $sum kr";

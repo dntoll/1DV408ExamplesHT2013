@@ -49,7 +49,14 @@ class ProductList {
 	/**
 	 * @return Boolean true if user wants to buy a product
 	 */
-	public function userRemovesProduct() {
+	public function userChangesCart() {
+		return $this->userBuysProduct() || $this->userRemovesProduct();
+	}
+
+	/**
+	 * @return Boolean true if user wants to buy a product
+	 */
+	private function userRemovesProduct() {
 		return isset($_GET[self::$removeButton]);
 	}
 

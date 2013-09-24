@@ -53,27 +53,17 @@ class BuyProducts {
 		$reload = false;
 		//handle input
 		//@todo: fix duplication
-		if ($this->productListView->userBuysProduct()) {
+		if ($this->productListView->userChangesCart()) {
 
 			try {
 				$product = $this->productListView->getSelectedProduct($this->productList);
 				//make changes in model
-				$this->cart->addProduct($product);
-
-				$this->cartView->addBuySuccessMessage();
-				$reload = true;
-			} catch(\Exception $e) {
-				
-			} 
-		}
-		if ($this->productListView->userRemovesProduct()) {
-
-			try {
-				$product = $this->productListView->getSelectedProduct($this->productList);
-				//make changes in model
-				$this->cart->removeProduct($product);
-
-				$this->cartView->addRemoveSuccessMessage();
+				if ($this->productListView->userBuysProduct() ) {
+					$this->cart->addProduct($product);
+				} else {
+					$this->cart->removeProduct($product);
+				}
+				$this->cartView->setSuccessMessage();
 				$reload = true;
 			} catch(\Exception $e) {
 				
