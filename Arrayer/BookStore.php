@@ -48,6 +48,9 @@ class BookStore {
 	* @return boolean true if book exists in store
 	*/
 	private function isBookInStore(Book $book) {
+
+		var_dump(debug_backtrace());
+
 		//isBookin store
 		foreach ($this->books as $inStoreBook) {
 			if ($inStoreBook->isSame($book)) {

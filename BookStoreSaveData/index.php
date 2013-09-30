@@ -8,7 +8,9 @@ require_once("AddBookController.php");
 
 $mysqli = new \mysqli("localhost", "root", "", "BookStore");
 
-$bookStore = new \model\BookStore($mysqli);
+$bookDal = new BookDAL($mysqli);
+
+$bookStore = new \model\BookStore($bookDal);
 
 $controller = new \controller\AddBookController($bookStore);
 
