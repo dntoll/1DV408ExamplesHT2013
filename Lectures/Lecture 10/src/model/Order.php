@@ -3,7 +3,14 @@
 namespace model;
 
 class Order {
-	public function hasAdress() {
-		return false;
+
+	/**
+	 * @var Adress
+	 */
+	private $adress;
+
+	public function __construct(Adress $adress) {
+		$this->adress = $adress;
+
 	}
 }

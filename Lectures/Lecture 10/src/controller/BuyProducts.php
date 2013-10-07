@@ -19,7 +19,6 @@ class BuyProducts {
 	 */
 	private $navigationView;
 
-
 	/**
 	 * @var \model\ProductList $productList
 	 */
@@ -31,8 +30,12 @@ class BuyProducts {
 	private $cart;
 
 	/**
-	 * @param \model\ProductList $productList
-	 * @param \model\Cart $cart
+	 * 
+	 * @param model\ProductList $productList     [description]
+	 * @param model\Cart        $cart            [description]
+	 * @param view\Navigation   $navigationView  [description]
+	 * @param view\ProductList  $productListView [description]
+	 * @param view\Cart         $cartView        [description]
 	 */
 	public function __construct(\model\ProductList 	$productList, 
 								\model\Cart 		$cart,
@@ -53,35 +56,32 @@ class BuyProducts {
 	 */
 	public function buyProducts() {
 
-		$reload = false;
 		//handle input
-		//@todo: fix duplication
 		if ($this->productListView->userChangesCart()) {
 
 			try {
-				$product = $this->productListView->getSelectedProduct($this->productList);
+
 				//make changes in model
+				$product = $this->productListView->getSelectedProduct($this->productList);
+				
 				if ($this->productListView->userBuysProduct() ) {
 					$this->cart->addProduct($product);
 				} else {
 					$this->cart->removeProduct($product);
 				}
+
 				$this->cartView->setSuccessMessage();
-				$reload = true;
+				$this->navigationView->reloadToFrontpage();
+				return "";
 			} catch(\Exception $e) {
+				//Error is handled in view
 				
 			} 
 		}
 		
-		if ($reload) {
-
-			$this->navigationView->reloadToFrontpage();
-			
-		} else {
-			//generate output (using views)
-			$productListHTML = $this->productListView->getProductList($this->productList);
-			$cartHTML = $this->cartView->getCartHTML();
-			return $productListHTML . $cartHTML;
-		}
+		//generate output (using views)
+		$productListHTML = $this->productListView->getProductList($this->productList);
+		$cartHTML = $this->cartView->getCartHTML();
+		return $productListHTML . $cartHTML;
 	}
 }

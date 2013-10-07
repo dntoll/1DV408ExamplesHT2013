@@ -10,17 +10,43 @@ class OrderView {
 	}
 
 	public function hasAdress() {
+		if (isset($_POST["adress"]) &&
+			$_POST["adress"] != "") {
+			return true;
+		}
+
+		
 		return false;
+	}
+
+	/**
+	 * @return \model\Adress
+	 */
+	public function getAdress() {
+		assert($this->hasAdress());
+
+		$rawInput = $_POST["adress"];
+
+		$trimmed = trim($rawInput);
+		$noTags = htmlentities($trimmed);
+
+		return new \model\Adress($noTags);
+
 	}
 
 	/**
 	 * @return String HTML
 	 */
-	public function getAdressForm() {
+	public function getAdressForm($adress) {
+		$orderLink = $this->navigationView->getOrderLink();
 
-		@todo lägg till information för formulär
+		@todo fix adress persistance output
+		$street = $adress->getAdress();
 		return "<h2>Adressform</h2>
-
+				<form action='?$orderLink' method='post'>
+					Adress: <input type='text' name='adress' value='$street'/>
+					<input type='submit' value='skicka' name='skicka'/>
+				</form>
 				";
 	}
 
@@ -34,7 +60,7 @@ class OrderView {
 		return "<a href='?$orderLink&" . self::$completeOrderButton . "'>complete order</a>";
 	}
 
-	public function userHasCompletedOrder() {
+	public function userCompletesOrder() {
 		return isset($_GET[self::$completeOrderButton]);
 	}
 
