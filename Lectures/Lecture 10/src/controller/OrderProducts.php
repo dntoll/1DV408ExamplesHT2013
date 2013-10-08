@@ -57,8 +57,6 @@ class OrderProducts {
 
 	public function showReceipt() {
 		$html = $this->orderView->showReceipt($this->completedOrder, $this->cartView);
-
-		
 		return $html;
 	}
 
@@ -72,6 +70,8 @@ class OrderProducts {
 			$this->orderSaver->save($this->pendingOrder);
 		}
 
+
+
 		
 		if ($this->order != null && 
 			$this->orderView->userCompletesOrder()) {
@@ -80,6 +80,7 @@ class OrderProducts {
 			$cartSwapper->newCart();
 			$this->completedOrder = $this->pendingOrder;
 			$this->pendingOrder = null;
+			@todo persist this change
 
 			$this->navigationView->goToReceipt();
 		}
