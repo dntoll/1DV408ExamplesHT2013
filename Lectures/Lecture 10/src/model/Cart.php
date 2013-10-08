@@ -49,6 +49,10 @@ class Cart {
 			assert(false);
 		}
 	}
+
+	public function removeAllItems() {
+		$this->productLines = array();
+	}
 	
 	private function removeProductLine(ProductLine $line) {
 		$product = $line->getProduct();

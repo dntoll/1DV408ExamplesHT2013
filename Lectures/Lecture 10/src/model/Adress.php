@@ -2,21 +2,43 @@
 
 namespace model;
 
-class Adress {
+
+abstract class Adress {
+	abstract public function getStreet();
+}
+
+class NullAdress extends Adress {
+	public function getStreet() {
+		return "";
+	}
+}
+
+
+//@todo change to Address
+class ValidAdress extends Adress {
 
 	/**
 	 * @var String 
 	 */
 	private $adress;
 
-	public function __construct($adressString) {
-		assert(is_string($adressString));
+	/**
+	 * @throws  Exception If addressString is empty
+	 * @param [type] $addressString [description]
+	 */
+	public function __construct($addressString) {
+		assert(is_string($addressString));
 
-		if ($adressString == "") {
+		if ($addressString == "") {
+			//@todo this must be catched
 			throw new \Exception("Address cannot be empty");
 		}
 		
 
-		$this->adress = $adressString;
+		$this->adress = $addressString;
+	}
+
+	public function getStreet() {
+		return $this->adress;
 	}
 }

@@ -11,10 +11,7 @@ class Cart {
 	//@todo document!
 	private static $addProductSucceded = true;
 	private static $removeProductSucceded = false;
-	/** 
-	 * @var \model\Cart
-	 */
-	private $cart;
+	
 
 	/**
 	 * @var \view\ProductList
@@ -24,10 +21,8 @@ class Cart {
 	/**
 	 * @param modelCart $cart 
 	 */
-	public function __construct(\model\Cart $cart, 
-								\view\ProductList $productListView,
+	public function __construct(\view\ProductList $productListView,
 								\view\Navigation $navigationView) {
-		$this->cart = $cart;
 		$this->productListView = $productListView;
 		$this->navigationView = $navigationView;
 
@@ -46,13 +41,13 @@ class Cart {
 
 	
 	/**
-	 * @todo remove duplications!
+	 * @todo remove duplications from getCartHTML!
 	 * Creates a HTML representation of the cart
 	 * @return String HTML 
 	 */
-	public function getFixedCartHTML() {
-		$productLines = $this->cart->getProductLines();
-		$sum = $this->cart->getSumSEK();
+	public function getFixedCartHTML(\model\Cart $cart) {
+		$productLines = $cart->getProductLines();
+		$sum = $cart->getSumSEK();
 		$html = "<ul>";
 
 		foreach ($productLines as $productLine) {
@@ -74,9 +69,9 @@ class Cart {
 	 * Creates a HTML representation of the cart
 	 * @return String HTML 
 	 */
-	public function getCartHTML() {
-		$productLines = $this->cart->getProductLines();
-		$sum = $this->cart->getSumSEK();
+	public function getCartHTML(\model\Cart $cart) {
+		$productLines = $cart->getProductLines();
+		$sum = $cart->getSumSEK();
 		$html = "<ul>";
 
 		
@@ -105,13 +100,11 @@ class Cart {
 			} else {
 				$html .= "Du tog bort en produkt! </br>";
 			}
-			
-			
 			unset($_SESSION[self::$messageHolder]);
 		}
 
 
-		if ($this->cart->containsItems()) {
+		if ($cart->containsItems()) {
 			$checkout = $this->navigationView->getCheckoutLink();
 			
 		} else {

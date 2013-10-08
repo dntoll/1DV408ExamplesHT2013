@@ -4,8 +4,9 @@ namespace controller;
 
 require_once("/src/view/OrderView.php");
 require_once("/src/controller/OrderProducts.php");
+require_once("/src/controller/CartSwapper.php");
 
-class Application {
+class Application implements CartSwapper {
 	/**
 	 * @var \model\ProductList
 	 */
@@ -60,8 +61,7 @@ class Application {
 		//initate views
  		$this->productListView = new \view\ProductList();
 		$this->navigationView = new \view\Navigation();
-		$this->cartView = new \view\Cart($this->cart, 
-										$this->productListView,
+		$this->cartView = new \view\Cart($this->productListView,
 										$this->navigationView);
 		$this->orderView = new \view\OrderView($this->navigationView);
 
@@ -74,7 +74,9 @@ class Application {
 
 		
 		$this->orderController = new \controller\OrderProducts($this->orderView,
-														$this->cartView);
+															   $this->cartView,
+															   $this->cart,
+															   $this->navigationView);
 	}
 
 	/**
@@ -83,19 +85,32 @@ class Application {
 	public function doApplication() {
 		$userWantsToCreateOrder = $this->navigationView->userCreatesOrder();
 		$userCanCreateOrder = $this->cart->containsItems();
+		$showReceipt = $this->navigationView->userChecksReceipt();
 
 		//run controllers
 		if ($userWantsToCreateOrder && $userCanCreateOrder) {
 
-			$html = $this->orderController->createOrder();
+			$html = $this->orderController->createOrder($this);
 			
+		} else if ($showReceipt) {
+			$html = $this->orderController->showReceipt();
+
 		} else {
+
 			$html = $this->productListController->buyProducts();
-			$this->cartSaver->save($this->cart);
+			
 		}
+		$this->cartSaver->save($this->cart);
 
 		return $html;
 	}
 
+	/**
+	 * part of CartSwapper
+	 * @return [type] [description]
+	 */
+	public function newCart() {
+		$this->cart = new \model\Cart();
+	}
 	
 }

@@ -5,6 +5,7 @@ namespace view;
 class Navigation {
 
 	private static $createOrder = "createOrder";
+	private static $checkReceipt = "showReceipt";
 
 	public function reloadToFrontpage() {
 		header("Location: index.php");
@@ -23,5 +24,13 @@ class Navigation {
 
 	public function getOrderLink() {
 		return self::$createOrder;
+	}
+
+	public function goToReceipt() {
+		header("Location: index.php?" . self::$checkReceipt);
+	}
+
+	public function userChecksReceipt() {
+		return isset($_GET[self::$checkReceipt]);
 	}
 }

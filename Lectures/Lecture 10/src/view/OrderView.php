@@ -20,7 +20,7 @@ class OrderView {
 	}
 
 	/**
-	 * @return \model\Adress
+	 * @return \model\ValidAdress
 	 */
 	public function getAdress() {
 		assert($this->hasAdress());
@@ -30,18 +30,18 @@ class OrderView {
 		$trimmed = trim($rawInput);
 		$noTags = htmlentities($trimmed);
 
-		return new \model\Adress($noTags);
+		return new \model\ValidAdress($noTags);
 
 	}
 
 	/**
 	 * @return String HTML
 	 */
-	public function getAdressForm($adress) {
+	public function getAdressForm(\model\Adress $adress) {
 		$orderLink = $this->navigationView->getOrderLink();
 
-		@todo fix adress persistance output
-		$street = $adress->getAdress();
+		//@todo fix adress persistance output
+		$street = $adress->getStreet();
 		return "<h2>Adressform</h2>
 				<form action='?$orderLink' method='post'>
 					Adress: <input type='text' name='adress' value='$street'/>
@@ -64,7 +64,18 @@ class OrderView {
 		return isset($_GET[self::$completeOrderButton]);
 	}
 
-	public function showReceipt() {
-		return "<h2>receipt for order</h2>";
+	public function showReceipt(\model\Order $order, \view\Cart $cart) {
+
+		
+		$adress = $order->getAdress();
+		$street = $adress->getStreet();
+		
+
+		$orderLines = $cart->getFixedCartHTML($order->getCart());
+
+		return "<h2>receipt for order</h2> 
+				$orderLines 
+				<h3>Adress</h3>
+				$street";
 	}
 }

@@ -81,7 +81,7 @@ class BuyProducts {
 		
 		//generate output (using views)
 		$productListHTML = $this->productListView->getProductList($this->productList);
-		$cartHTML = $this->cartView->getCartHTML();
+		$cartHTML = $this->cartView->getCartHTML($this->cart);
 		return $productListHTML . $cartHTML;
 	}
 }

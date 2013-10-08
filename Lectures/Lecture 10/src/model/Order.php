@@ -5,12 +5,31 @@ namespace model;
 class Order {
 
 	/**
-	 * @var Adress
+	 * @var ValidAdress
 	 */
 	private $adress;
 
-	public function __construct(Adress $adress) {
-		$this->adress = $adress;
+	/**
+	 * @var Cart
+	 */
+	private $cart;
 
+	public function __construct(ValidAdress $adress, Cart $cart) {
+		$this->adress = $adress;
+		$this->cart = $cart;
+	}
+
+	/**
+	 * @return ValidAdress
+	 */
+	public function getAdress() {
+		return $this->adress;
+	}
+
+	/**
+	 * @return Cart
+	 */
+	public function getCart() {
+		return $this->cart;
 	}
 }
