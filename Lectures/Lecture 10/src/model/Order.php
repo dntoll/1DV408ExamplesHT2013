@@ -7,13 +7,18 @@ class Order {
 	/**
 	 * @var ValidAdress
 	 */
-	private $adress;
+	public $adress;
 
 	/**
 	 * @var Cart
 	 */
 	private $cart;
 
+
+	/**
+	 * @param ValidAdress $adress [description]
+	 * @param Cart        $cart   [description]
+	 */
 	public function __construct(ValidAdress $adress, Cart $cart) {
 		$this->adress = $adress;
 		$this->cart = $cart;

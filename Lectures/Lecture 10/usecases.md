@@ -25,5 +25,6 @@ Postcondition: Order is created, products are removed from cart
 4. System creates the order for shipping and presents a receipt for the order.
 
 Use-Case. Manage Orders
+Precondition: There is at least one order in Order Catalog
 
 

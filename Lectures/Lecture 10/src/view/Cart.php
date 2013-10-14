@@ -6,10 +6,22 @@ namespace view;
 
 class Cart {
 
+	/**
+	 * Location in $_SESSION to hold last message 
+	 * @var string
+	 */
 	private static $messageHolder = "view::Cart::ActionSuccess";
 		
-	//@todo document!
+	/**
+	 * Message 
+	 * @var boolean
+	 */
 	private static $addProductSucceded = true;
+
+	/**
+	 * Message 
+	 * @var boolean
+	 */
 	private static $removeProductSucceded = false;
 	
 
@@ -19,7 +31,8 @@ class Cart {
 	private $productListView;
 
 	/**
-	 * @param modelCart $cart 
+	 * @param viewProductList $productListView [description]
+	 * @param viewNavigation  $navigationView  [description]
 	 */
 	public function __construct(\view\ProductList $productListView,
 								\view\Navigation $navigationView) {
@@ -29,6 +42,7 @@ class Cart {
 		assert(isset($_SESSION));
 	}
 
+	
 	public function setSuccessMessage() {
 
 		if ($this->productListView->userBuysProduct()) {

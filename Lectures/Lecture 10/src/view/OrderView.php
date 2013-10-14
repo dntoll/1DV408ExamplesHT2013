@@ -5,10 +5,16 @@ namespace view;
 class OrderView {
 	private static $completeOrderButton = "completeOrder";
 
+	/**
+	 * @param viewNavigation $navigationView [description]
+	 */
 	public function __construct(\view\Navigation $navigationView) {
 		$this->navigationView = $navigationView;
 	}
 
+	/**
+	 * @return boolean [description]
+	 */
 	public function hasAdress() {
 		if (isset($_POST["adress"]) &&
 			$_POST["adress"] != "") {
@@ -60,10 +66,19 @@ class OrderView {
 		return "<a href='?$orderLink&" . self::$completeOrderButton . "'>complete order</a>";
 	}
 
+	/**
+	 * @return boolean
+	 */
 	public function userCompletesOrder() {
 		return isset($_GET[self::$completeOrderButton]);
 	}
 
+	/**
+	 * 
+	 * @param  modelOrder $order [description]
+	 * @param  viewCart   $cart  [description]
+	 * @return String HTML
+	 */
 	public function showReceipt(\model\Order $order, \view\Cart $cart) {
 
 		

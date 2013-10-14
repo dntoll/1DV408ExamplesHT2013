@@ -29,6 +29,16 @@ class OrderProducts {
 	 */
 	private $completedOrder = null;	
 
+	/**
+	 * @var \model\OrderSessionSaver
+	 */
+	private $pendingOrderSaver = null;	
+
+	/**
+	 * @var \model\OrderSessionSaver
+	 */
+	private $completedOrderSaver = null;	
+
 	
 
 	/**
@@ -42,10 +52,15 @@ class OrderProducts {
 		$this->orderView = $orderView;
 		$this->cartView = $cartView;
 
-		@todo pendingOrder and completedOrders? must be saved database?
-		$this->orderSaver = new \model\OrderSessionSaver();
-		if ($this->orderSaver->hasOrderSaved()) {
-			$this->pendingOrder = $this->orderSaver->load();
+		//@todo pendingOrder and completedOrders? must be saved database?
+		$this->pendingOrderSaver = new \model\OrderSessionSaver("Pending");
+		$this->completedOrderSaver = new \model\OrderSessionSaver("Completed");
+
+		if ($this->pendingOrderSaver->hasOrderSaved()) {
+			$this->pendingOrder = $this->pendingOrderSaver->load();
+		}
+		if ($this->completedOrderSaver->hasOrderSaved()) {
+			$this->completedOrder = $this->completedOrderSaver->load();
 		}
 
 		$this->orderCatalog = new \model\OrderCatalog();
@@ -61,30 +76,31 @@ class OrderProducts {
 	}
 
 	public function createOrder(CartSwapper $cartSwapper) {
-		//handle input
+		//When we have and adress save pending order
 		if ($this->orderView->hasAdress()) {
 
 			$adress = $this->orderView->getAdress();
 
 			$this->pendingOrder = new \model\Order($adress, $this->cart);
-			$this->orderSaver->save($this->pendingOrder);
+			$this->pendingOrderSaver->save($this->pendingOrder);
 		}
-
-
-
 		
-		if ($this->order != null && 
+		//When we complete orders 
+		if ($this->pendingOrder != null && 
 			$this->orderView->userCompletesOrder()) {
 
 			$this->orderCatalog->add($this->pendingOrder);
 			$cartSwapper->newCart();
 			$this->completedOrder = $this->pendingOrder;
+			$this->completedOrderSaver->save($this->completedOrder);
+
 			$this->pendingOrder = null;
-			@todo persist this change
+			$this->pendingOrderSaver->remove();
 
 			$this->navigationView->goToReceipt();
 		}
 
+		//Extract adress
 		if ($this->pendingOrder != null) {
 			$adress = $this->pendingOrder->getAdress();
 		} else {
