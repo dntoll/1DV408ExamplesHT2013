@@ -11,7 +11,7 @@
 1. Click on buy for product 1
 1. Product one is in cart and feedback
 
-## Testcase 1.3 Buy 2 Products ##
+## Testcase 1.3 Buy two Products ##
 1. Testcase 1.2 Navigate to page
 1. Click on buy for product 1
 1. Two Products is in cart and feedback
@@ -34,6 +34,8 @@
 1. show error feedback
 
 ## Testcase 2.1 Create order
-
+1. Testcase 1.3 Buy two products
+1. Go to checkout
+1. Cart and sum is displayed
 
 ## Testcase 2.1 check order 

@@ -5,6 +5,8 @@ namespace controller;
 require_once("/src/view/OrderView.php");
 require_once("/src/controller/OrderProducts.php");
 require_once("/src/controller/CartSwapper.php");
+require_once("/src/model/ArrayProductList.php");
+
 
 class Application implements CartSwapper {
 	/**
@@ -48,12 +50,11 @@ class Application implements CartSwapper {
 	private $orderController;
 
 
-	public function __construct() {
+	public function __construct(\model\IProductList $productList) {
 
 		//Initiate model
-		$this->productList = new \model\ProductList();
-		$this->productList->add(new \model\Product("Banana", "Banan", 5.5));
-		$this->productList->add(new \model\Product("Peaches", "Peach", 3.33));
+		$this->productList = $productList;
+
 
 		$this->cartSaver = new \model\CartSaver();
 		$this->cart = $this->cartSaver->load();

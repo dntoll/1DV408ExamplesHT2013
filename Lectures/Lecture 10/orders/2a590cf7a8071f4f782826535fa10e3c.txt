@@ -1,0 +1,5 @@
+Order: 
+Adress: cdsfcfs
+Banana 2 x 5.5 = 11 SEK
+Peaches 2 x 3.33 = 6.66 SEK
+Totalkostnad : 17.66 SEK

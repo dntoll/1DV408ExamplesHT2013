@@ -31,13 +31,13 @@ class BuyProducts {
 
 	/**
 	 * 
-	 * @param model\ProductList $productList     [description]
+	 * @param model\IProductList $productList     [description]
 	 * @param model\Cart        $cart            [description]
 	 * @param view\Navigation   $navigationView  [description]
 	 * @param view\ProductList  $productListView [description]
 	 * @param view\Cart         $cartView        [description]
 	 */
-	public function __construct(\model\ProductList 	$productList, 
+	public function __construct(\model\IProductList 	$productList, 
 								\model\Cart 		$cart,
 								\view\Navigation    $navigationView,
 								\view\ProductList   $productListView,

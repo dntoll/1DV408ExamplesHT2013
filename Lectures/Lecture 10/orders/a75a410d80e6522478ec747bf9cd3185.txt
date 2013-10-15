@@ -1,0 +1,5 @@
+Order: 
+Adress: sunway
+Swedish Pear 1 x 1.0199999809265 = 1.0199999809265 SEK
+Apple 1 x 3.3199999332428 = 3.3199999332428 SEK
+Totalkostnad : 4.3399999141693 SEK

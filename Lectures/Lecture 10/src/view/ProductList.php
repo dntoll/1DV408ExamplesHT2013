@@ -3,7 +3,7 @@
 namespace view;
 
 require_once("\src\model\Product.php");
-require_once("\src\model\ProductList.php");
+require_once("\src\model\IProductList.php");
 
 class ProductList {
 	/**
@@ -28,7 +28,7 @@ class ProductList {
 	 * @param  \model\ProductList $productList
 	 * @return String HTML                  
 	 */
-	public function getProductList(\model\ProductList $productList) {
+	public function getProductList(\model\IProductList $productList) {
 
 		$productArray = $productList->getProductArray();
 		$products = "";
@@ -70,7 +70,7 @@ class ProductList {
      *
      * @throws Exception If Product name does not exist
 	 */
-	public function getSelectedProduct(\model\ProductList $allProducts) {
+	public function getSelectedProduct(\model\IProductList $allProducts) {
 
 		if (isset( $_GET[self::$buyButton])) {
 			$unique = $_GET[self::$buyButton];

@@ -2,7 +2,9 @@
 
 namespace model;
 
-class ProductList {
+require_once("IProductList.php");
+
+class ArrayProductList implements IProductList {
 
 	/**
 	 * @var array of Product 

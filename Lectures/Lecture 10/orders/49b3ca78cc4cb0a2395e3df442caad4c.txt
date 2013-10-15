@@ -1,0 +1,5 @@
+Order: 
+Adress: fsdfds
+Banana 1 x 5.5 = 5.5 SEK
+Peaches 1 x 3.33 = 3.33 SEK
+Totalkostnad : 8.83 SEK
