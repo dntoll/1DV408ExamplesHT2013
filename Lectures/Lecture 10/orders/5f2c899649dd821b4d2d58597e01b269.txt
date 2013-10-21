@@ -1,0 +1,5 @@
+Order: 
+Adress: fgdgdg
+Apple 2 x 3.3199999332428 = 6.6399998664856 SEK
+Swedish Pear 2 x 1.0199999809265 = 2.039999961853 SEK
+Totalkostnad : 8.6799998283386 SEK

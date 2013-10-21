@@ -2,13 +2,18 @@
 
 Basic MVC example of a shop
 
+Requirements
+====================
+Prices are in SEK and are rounded correctly
+Response time is acceptable
+
 Use-Case 1. Manage Shopping Cart
 =====================================
 
 Postcondition: A cart is created with products
 
 1. Use-Case starts when a customer wants create a shopping cart
-2. System presents the customer with products that can be bought
+2. System presents the customer with products that can be bought with price
 3. The customer selects the products she intends to purchase.
 4. System adds the product to a shopping cart, amounts and cost of the products in the cart are presented to the user.
 5. customer removes or adds products to the cart until satisfied, repeat from 2

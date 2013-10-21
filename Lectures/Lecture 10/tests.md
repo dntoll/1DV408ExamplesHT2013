@@ -3,7 +3,7 @@
 ## Testcase 1.1 Navigate to page ##
 1. Open new browser
 1. Navigate to page
-1. System shows empty cart and list of products with buy-buttons
+1. System shows empty cart and list of products with buy-buttons and price
 
 
 ## Testcase 1.2 Buy Product ##
@@ -33,9 +33,22 @@
 1. Write remove product in url
 1. show error feedback
 
+## Testcase 1.7 Remove  product from Cart##
+1. Testcase 1.2 Buy Product
+1. Click on remove button
+1. show empty cart and feedback
+
 ## Testcase 2.1 Create order
 1. Testcase 1.3 Buy two products
 1. Go to checkout
-1. Cart and sum is displayed
+1. Cart and sum is displayed and system asks for an adress
+1. Enters valid adress
+1. System provides feedback that an order can be created and ask customer to confirm.
+1. confirm order
+1. System displays receipt with cart and sum
 
-## Testcase 2.1 check order 
+## Testcase 2.1.1 missing adress 
+1. Testcase 1.3 Buy two products
+1. Go to checkout
+1. Cart and sum is displayed and system asks for an adress
+1. Confirm order

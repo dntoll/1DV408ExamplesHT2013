@@ -15,7 +15,7 @@ $productList->add(new \model\Product("Peaches", "Peach", 3.33));
 $productList->add(new \model\Product("Apple", "Apple", 2.33));
 */
 
-$mysqli = new \mysqli("localhost", "root", "", "HT2013");
+$mysqli = new \mysqli("127.0.0.1", "root", "", "HT2013");
 if (mysqli_connect_errno()) {
     printf("Connect failed: %s\n", mysqli_connect_error());
     exit();

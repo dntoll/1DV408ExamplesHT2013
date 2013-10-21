@@ -41,7 +41,8 @@ class BuyProducts {
 								\model\Cart 		$cart,
 								\view\Navigation    $navigationView,
 								\view\ProductList   $productListView,
-								\view\Cart          $cartView) {
+								\view\Cart          $cartView,
+								\model\PersistantMessage $persistantMessage) {
 		$this->productListView =  $productListView;
 		$this->productList = $productList;
 
@@ -49,6 +50,7 @@ class BuyProducts {
 
 		$this->cartView = $cartView;
 		$this->navigationView = $navigationView;
+		$this->persistantMessage = $persistantMessage;
 	}
 
 	/**
@@ -82,6 +84,7 @@ class BuyProducts {
 		//generate output (using views)
 		$productListHTML = $this->productListView->getProductList($this->productList);
 		$cartHTML = $this->cartView->getCartHTML($this->cart);
+		$this->persistantMessage->removeMessages();
 		return $productListHTML . $cartHTML;
 	}
 }

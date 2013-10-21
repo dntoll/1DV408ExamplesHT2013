@@ -2,28 +2,9 @@
 
 namespace view;
 
-
+require_once("src/model/PersistantMessage.php");
 
 class Cart {
-
-	/**
-	 * Location in $_SESSION to hold last message 
-	 * @var string
-	 */
-	private static $messageHolder = "view::Cart::ActionSuccess";
-		
-	/**
-	 * Message 
-	 * @var boolean
-	 */
-	private static $addProductSucceded = true;
-
-	/**
-	 * Message 
-	 * @var boolean
-	 */
-	private static $removeProductSucceded = false;
-	
 
 	/**
 	 * @var \view\ProductList
@@ -31,26 +12,32 @@ class Cart {
 	private $productListView;
 
 	/**
+	 * @var \model\PersistantMessage
+	 */
+	private $persistantMessage;
+
+	/**
 	 * @param viewProductList $productListView [description]
 	 * @param viewNavigation  $navigationView  [description]
 	 */
 	public function __construct(\view\ProductList $productListView,
-								\view\Navigation $navigationView) {
+								\view\Navigation $navigationView,
+								\model\PersistantMessage $persistantMessage) {
 		$this->productListView = $productListView;
 		$this->navigationView = $navigationView;
 
-		assert(isset($_SESSION));
+		$this->persistantMessage = $persistantMessage;
+		
 	}
 
 	
 	public function setSuccessMessage() {
 
 		if ($this->productListView->userBuysProduct()) {
-			$_SESSION[self::$messageHolder] = self::$addProductSucceded;
+			$this->persistantMessage->succededToAddProduct();
 		} else {
-			$_SESSION[self::$messageHolder] = self::$removeProductSucceded;
+			$this->persistantMessage->succededToRemoveProduct();
 		}
-		
 	}
 
 	
@@ -107,14 +94,11 @@ class Cart {
 		}
 		$html .= "</ul>";
 		
-
-		if (isset($_SESSION[self::$messageHolder])) {
-			if ($_SESSION[self::$messageHolder] == self::$addProductSucceded) {
-				$html .= "Grattis till ditt köp, kommer göra dig gott!</br>";	
-			} else {
-				$html .= "Du tog bort en produkt! </br>";
-			}
-			unset($_SESSION[self::$messageHolder]);
+		//todo encapsulate messages
+		if ($this->persistantMessage->didBuyProduct()) {
+			$html .= "Grattis till ditt köp, kommer göra dig gott!</br>";	
+		} else if ($this->persistantMessage->didRemoveProduct()) { 
+			$html .= "Du tog bort en produkt! </br>";
 		}
 
 

@@ -62,8 +62,10 @@ class Application implements CartSwapper {
 		//initate views
  		$this->productListView = new \view\ProductList();
 		$this->navigationView = new \view\Navigation();
+		$persistantMessage = new \model\PersistantMessage();
 		$this->cartView = new \view\Cart($this->productListView,
-										$this->navigationView);
+										$this->navigationView, 
+										$persistantMessage);
 		$this->orderView = new \view\OrderView($this->navigationView);
 
 		//Initiate controllers
@@ -71,7 +73,8 @@ class Application implements CartSwapper {
 																 $this->cart,
 																 $this->navigationView,
 																 $this->productListView,
-																 $this->cartView);
+																 $this->cartView,
+																 $persistantMessage);
 
 		
 		$this->orderController = new \controller\OrderProducts($this->orderView,
